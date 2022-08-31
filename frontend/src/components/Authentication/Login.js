@@ -13,12 +13,17 @@ const Login = () => {
     <VStack>
       <FormControl id="email" isRequired>
         <FormLabel>Email</FormLabel>
-        <Input placeholder="Enter your email" onChange={(e) => setEmail(e.target.value)} />
+        <Input value={email} placeholder="Enter your email" onChange={(e) => setEmail(e.target.value)} />
       </FormControl>
       <FormControl id="password" isRequired>
         <FormLabel>Password</FormLabel>
         <InputGroup>
-          <Input placeholder="Enter Password" type={show ? 'text' : 'password'} onChange={(e) => setPassword(e.target.value)} />
+          <Input
+            value={password}
+            placeholder="Enter Password"
+            type={show ? 'text' : 'password'}
+            onChange={(e) => setPassword(e.target.value)}
+          />
           <InputRightElement width="4.5rem">
             <Button h="1.75rem" size="sm" onClick={handleClick}>
               {show ? 'show' : 'hide'}
