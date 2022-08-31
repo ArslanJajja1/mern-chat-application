@@ -9,6 +9,7 @@ const userModel = mongoose.Schema(
     email: {
       type: String,
       required: true,
+      unique: true,
     },
     password: {
       type: String,
@@ -16,7 +17,6 @@ const userModel = mongoose.Schema(
     },
     pic: {
       type: String,
-      required: true,
       default: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4FRdJhLdEEhFbcIuR-DEGYsFMjn-6QUGZ7A&usqp=CAU',
     },
   },
