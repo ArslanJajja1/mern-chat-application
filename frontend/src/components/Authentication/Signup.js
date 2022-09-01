@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Button, FormControl, FormLabel, Input, InputGroup, InputRightElement, VStack } from '@chakra-ui/react';
-
+import { Button, FormControl, FormLabel, Input, InputGroup, InputRightElement, VStack, useToast } from '@chakra-ui/react';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 const Signup = () => {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
@@ -8,11 +9,106 @@ const Signup = () => {
   const [email, setEmail] = useState('');
   const [pic, setPic] = useState('');
   const [show, setShow] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const toast = useToast();
+  const history = useHistory();
   const handleClick = (e) => {
     setShow((prev) => !prev);
   };
-  const postDetails = (pics) => {};
-  const submitHandler = (e) => {};
+  const postDetails = (pics) => {
+    setLoading(true);
+    if (pics === undefined) {
+      toast({
+        title: 'Please select image',
+        status: 'warning',
+        duration: 5000,
+        isClosable: true,
+        position: 'bottom',
+      });
+    }
+    if (pics.type === 'image/jpeg' || pics.type === 'image/png') {
+      const data = new FormData();
+      data.append('file', pics);
+      data.append('upload_preset', 'mern-chat-app');
+      data.append('cloud_name', 'aj142');
+      fetch('https://api.cloudinary.com/v1_1/aj142/image/upload', {
+        method: 'POST',
+        body: data,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setPic(data.url.toString());
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoading(false);
+        });
+    } else {
+      toast({
+        title: 'Please select an image',
+        status: 'warning',
+        duration: 5000,
+        isClosable: true,
+        position: 'bottom',
+      });
+      setLoading(false);
+      return;
+    }
+  };
+  const submitHandler = async (e) => {
+    setLoading(true);
+    if (!name || !email || !password || !confirmPassword) {
+      toast({
+        title: 'Please fill all fields',
+        status: 'warning',
+        duration: 5000,
+        isClosable: true,
+        position: 'bottom',
+      });
+      setLoading(false);
+      return;
+    }
+    if (password !== confirmPassword) {
+      toast({
+        title: 'Passwords do not match',
+        status: 'warning',
+        duration: 5000,
+        isClosable: true,
+        position: 'bottom',
+      });
+      return;
+    }
+    try {
+      const config = {
+        headers: {
+          'Content-type': 'application/json',
+        },
+      };
+      const { data } = await axios.post('/api/user', { name, email, password, pic }, config);
+      console.log(data);
+      toast({
+        title: 'Registration Successfull',
+        status: 'success',
+        duration: 5000,
+        isClosable: true,
+        position: 'bottom',
+      });
+      localStorage.setItem('userInfo', JSON.stringify(data));
+      history.push('/chats');
+    } catch (error) {
+      toast({
+        title: 'Error Occured !',
+        description: error.response.data.message,
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+        position: 'bottom',
+      });
+      console.log(error);
+      setLoading(false);
+    }
+  };
   return (
     <VStack>
       <FormControl id="first-name" isRequired>
@@ -59,7 +155,7 @@ const Signup = () => {
         <FormLabel>Upload Picture</FormLabel>
         <Input type="file" accept="image/*" onChange={(e) => postDetails(e.target.files[0])} p={1.5} />
       </FormControl>
-      <Button colorScheme="blue" width="100%" style={{ marginTop: 15 }} onClick={submitHandler}>
+      <Button isLoading={loading} colorScheme="blue" width="100%" style={{ marginTop: 15 }} onClick={submitHandler}>
         Sign up
       </Button>
     </VStack>
