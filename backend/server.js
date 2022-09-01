@@ -2,7 +2,7 @@ const express = require('express');
 const connectDB = require('./config/db');
 require('dotenv').config();
 const { chats } = require('./data/data');
-const { errorHandler, notFound } = require('./errorMiddleware');
+const { errorHandler, notFound } = require('./middlewares/errorMiddleware');
 const userRoutes = require('./routes/userRoutes');
 connectDB();
 const app = express();
