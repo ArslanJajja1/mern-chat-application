@@ -31,7 +31,7 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new Error('Failed to create user');
   }
 });
-const loginUser = async (req, res) => {
+const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
   console.log(user, await user.matchPassword(password));
@@ -47,6 +47,15 @@ const loginUser = async (req, res) => {
     res.status(400);
     throw new Error('Failed to login user');
   }
-};
+});
+const allUsers = asyncHandler(async (req, res) => {
+  const keyword = req.query.search
+    ? {
+        $or: [{ name: { $regex: req.query.search, $options: 'i' } }, { email: { $regex: req.query.search, $options: 'i' } }],
+      }
+    : {};
+  const users = await User.find(keyword).find({ _id: { $ne: req.user._id } });
+  res.send(users);
+});
 
-module.exports = { registerUser, loginUser };
+module.exports = { registerUser, loginUser, allUsers };
