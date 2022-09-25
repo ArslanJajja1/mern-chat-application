@@ -18,6 +18,7 @@ import {
   DrawerBody,
   Input,
   useToast,
+  Spinner,
 } from '@chakra-ui/react';
 import { BellIcon, ChevronDownIcon } from '@chakra-ui/icons';
 import { ChatState } from '../../Context/ChatProvider';
@@ -74,7 +75,7 @@ const SideDrawer = () => {
   };
   const accessChat = async (userId) => {
     try {
-      setLoadingChat(false);
+      setLoadingChat(true);
       const config = {
         headers: {
           'Content-type': 'application/json',
@@ -82,6 +83,7 @@ const SideDrawer = () => {
         },
       };
       const { data } = await axios.post('/api/chat', { userId }, config);
+      if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);
       setSelectedChat(data);
       setLoadingChat(false);
       onClose();
@@ -110,7 +112,7 @@ const SideDrawer = () => {
       >
         <Tooltip label="Search users for chat" hasArrow placement="bottom-end" textColor="white">
           <Button variant="ghost" onClick={onOpen}>
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <i className="fa-solid fa-magnifying-glass"></i>
             <Text display={{ base: 'none', md: 'flex' }} px="4">
               Search Users
             </Text>
@@ -153,10 +155,11 @@ const SideDrawer = () => {
             ) : (
               <span>
                 {searchResult?.map((user) => (
-                  <UserListItem key={user._id} user={user} handleFuction={() => accessChat(user._id)} />
+                  <UserListItem key={user._id} user={user} handleFunction={() => accessChat(user._id)} />
                 ))}
               </span>
             )}
+            {loadingChat && <Spinner ml="auto" display="flex" />}
           </DrawerBody>
         </DrawerContent>
       </Drawer>
