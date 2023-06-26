@@ -23,7 +23,7 @@ import UserBadgeItem from '../UserAvatar/UserBadgeItem';
 import axios from 'axios';
 import UserListItem from '../UserAvatar/UserListItem';
 
-const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain }) => {
+const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain,fetchMessages }) => {
   const [groupChatName, setGroupChatName] = useState('');
   const [search, setSearch] = useState('');
   const [searchResult, setSearchResult] = useState([]);
@@ -80,6 +80,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain }) => {
       const { data } = await axios.put(`/api/chat/groupremove`, { chatId: selectedChat._id, userId: user1._id }, config);
       user1._id === user._id ? setSelectedChat('') : setSelectedChat(data);
       setFetchAgain(!fetchAgain);
+      fetchMessages()
       setLoading(false);
     } catch (error) {
       toast({
