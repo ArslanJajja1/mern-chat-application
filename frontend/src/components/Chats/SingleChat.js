@@ -18,7 +18,7 @@ import ProfileModal from "../Modal/ProfileModal";
 import UpdateGroupChatModal from "../Modal/UpdateGroupChatModal";
 import "./styles.css";
 import ScrollableChat from "./ScrollableChat";
-import animationData from "../../assets/typings.json";
+import animationData from "../../../public/assets/typings.json";
 
 const ENDPOINT = process.env.REACT_APP_API;
 var socket, selectedChatCompare;
