@@ -10,20 +10,7 @@ const Homepage = () => {
     if (user) history.push('/chats');
   }, [history]);
   return (
-    <Container maxW="xl" centerContent>
-      <Box
-        style={{ display: 'flex', justifyContent: 'center' }}
-        p={3}
-        bg={'white'}
-        w="100%"
-        m="40px 0 15px 0"
-        borderRadius="lg"
-        borderWidth="1px"
-      >
-        <Text fontSize="4xl" fontFamily="Work sans" color="black">
-          Chat-App
-        </Text>
-      </Box>
+    <Container maxW="xl" display='flex' justifyContent='center' alignItems='center'>
       <Box bg="white" color="black" w="100%" p={4} borderRadius="lg" borderWidth="1px">
         <Tabs variant="soft-rounded">
           <TabList mb="1em">
