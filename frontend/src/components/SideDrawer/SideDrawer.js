@@ -132,8 +132,8 @@ const SideDrawer = () => {
             </Text>
           </Button>
         </Tooltip>
-        <Text fontSize="2xl" fontFamily="work sans">
-          Mern Chat App
+        <Text fontWeight='bold' fontFamily="work sans">
+          Chat App By Arslan Haroon 👉 <a style={{borderBottom:'2px solid black'}} href="https://www.github.com/ArslanJajja1" target="_blank">GitHub</a>
         </Text>
         <div>
           <Menu>
