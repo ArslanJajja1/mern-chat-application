@@ -1,6 +1,6 @@
-import { Box } from '@chakra-ui/react';
-import { CloseIcon } from '@chakra-ui/icons';
-import React from 'react';
+import { Box } from "@chakra-ui/react";
+import { CloseIcon } from "@chakra-ui/icons";
+import React from "react";
 
 const UserBadgeItem = ({ user, handleFunction }) => {
   return (

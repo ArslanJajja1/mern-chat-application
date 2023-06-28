@@ -1,5 +1,5 @@
-import { Avatar, Box, Text } from '@chakra-ui/react';
-import React from 'react';
+import { Avatar, Box, Text } from "@chakra-ui/react";
+import React from "react";
 
 const UserListItem = ({ user, handleFunction }) => {
   return (
@@ -8,8 +8,8 @@ const UserListItem = ({ user, handleFunction }) => {
       cursor="pointer"
       bg="#E8E8E8"
       _hover={{
-        background: '#38B2AC',
-        color: 'white',
+        background: "#38B2AC",
+        color: "white",
       }}
       w="100%"
       display="flex"
@@ -20,7 +20,13 @@ const UserListItem = ({ user, handleFunction }) => {
       mb={2}
       borderRadius="lg"
     >
-      <Avatar mr={2} size="sm" cursor="pointer" name={user.name} src={user.pic} />
+      <Avatar
+        mr={2}
+        size="sm"
+        cursor="pointer"
+        name={user.name}
+        src={user.pic}
+      />
       <Box>
         <Text>{user?.name}</Text>
         <Text fontSize="xs">

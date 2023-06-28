@@ -38,7 +38,8 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const [typing, setTyping] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const toast = useToast();
-  const { user, selectedChat, setSelectedChat,notification,setNotification } = ChatState();
+  const { user, selectedChat, setSelectedChat, notification, setNotification } =
+    ChatState();
 
   const sendMessage = async (e) => {
     if (e.key === "Enter" && newMessage) {
@@ -126,9 +127,9 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         !selectedChatCompare ||
         selectedChatCompare._id !== newMessageRecieved.chat._id
       ) {
-        if(!notification.includes(newMessageRecieved)){
-          setNotification([newMessageRecieved,...notification])
-          setFetchAgain(!fetchAgain)
+        if (!notification.includes(newMessageRecieved)) {
+          setNotification([newMessageRecieved, ...notification]);
+          setFetchAgain(!fetchAgain);
         }
       } else {
         setMessages([...messages, newMessageRecieved]);
