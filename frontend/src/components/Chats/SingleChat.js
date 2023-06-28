@@ -53,7 +53,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         };
         setNewMessage("");
         const { data } = await axios.post(
-          `${process.env.API}/api/message`,
+          `${process.env.REACT_APP_API}/api/message`,
           { content: newMessage, chatId: selectedChat._id },
           config
         );
@@ -80,7 +80,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     };
     try {
       const { data } = await axios.get(
-        `${process.env.API}/api/message/${selectedChat._id}`,
+        `${process.env.REACT_APP_API}/api/message/${selectedChat._id}`,
         config
       );
       setMessages(data);

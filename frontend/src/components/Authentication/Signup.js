@@ -30,8 +30,8 @@ const Signup = () => {
       const data = new FormData();
       data.append('file', pics);
       data.append('upload_preset', 'mern-chat-app');
-      data.append('cloud_name', process.env.CLOUD_NAME);
-      fetch(process.env.CLOUDINARY_URL, {
+      data.append('cloud_name', process.env.REACT_APP_CLOUD_NAME);
+      fetch(process.env.REACT_APP_CLOUDINARY_URL, {
         method: 'POST',
         body: data,
       })
@@ -84,7 +84,7 @@ const Signup = () => {
           'Content-type': 'application/json',
         },
       };
-      const { data } = await axios.post('/api/user', { name, email, password, pic }, config);
+      const { data } = await axios.post(`${process.env.REACT_APP_API}/api/user`, { name, email, password, pic }, config);
       toast({
         title: 'Registration Successfull',
         status: 'success',
