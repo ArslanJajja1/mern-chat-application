@@ -27,6 +27,10 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import ChatLoading from '../Loading/ChatLoading';
 import UserListItem from '../UserAvatar/UserListItem';
+import { getSender } from '../../config/ChatLogics';
+import NotificationBadge, { Effect } from 'react-notification-badge'
+
+
 const SideDrawer = () => {
   const [search, setSearch] = useState('');
   const [searchResult, setSearchResut] = useState([]);
@@ -34,7 +38,7 @@ const SideDrawer = () => {
   const [loadingChat, setLoadingChat] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
-  const { user, setSelectedChat, chats, setChats } = ChatState();
+  const { user, setSelectedChat, chats, setChats,notification,setNotification } = ChatState();
   const history = useHistory();
   const logoutHandler = () => {
     localStorage.removeItem('userInfo');
@@ -124,8 +128,23 @@ const SideDrawer = () => {
         <div>
           <Menu>
             <MenuButton p={1}>
+              <NotificationBadge
+              count={notification.length}
+              effect={Effect.SCALE}
+              />
               <BellIcon fontSize="2xl" margin={1} />
             </MenuButton>
+            <MenuList pl={2}>
+              {!notification.length && 'No new messages'}
+              {notification.map((noti)=>(
+                <MenuItem key={noti._id} onClick={()=>{
+                  setSelectedChat(noti.chat)
+                  setNotification(notification.filter(n=> n !== noti))
+                }}>
+                {noti.chat.isGroupChat ? `New message in ${noti.chat.chatName}`:`New message from ${getSender(user,noti.chat.users)}`}
+                </MenuItem>
+              ))}
+            </MenuList>
           </Menu>
           <Menu>
             <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
