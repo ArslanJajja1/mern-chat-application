@@ -199,15 +199,19 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
           <ModalCloseButton />
           <ModalBody>
             <Box display="flex" w="100%" flexWrap="wrap" pb={3}>
-              {selectedChat.users?.map((user) => (
+              {selectedChat.users?.map((user1) => (
                 <UserBadgeItem
-                  key={user._id}
-                  user={user}
+                  key={user1._id}
+                  user={user1}
+                  loggedInUser={user}
+                  selectedChat={selectedChat}
                   handleFunction={handleRemove}
                 />
               ))}
             </Box>
-            <FormControl display="flex">
+            {selectedChat.groupAdmin._id === user._id && (
+            <>
+              <FormControl display="flex">
               <Input
                 placeholder="Chat Name"
                 mb={3}
@@ -231,6 +235,8 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
                 onChange={(e) => handleSearch(e.target.value)}
               />
             </FormControl>
+            </>)}
+            
             {loading ? (
               <Spinner size="lg" />
             ) : (
