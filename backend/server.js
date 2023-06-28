@@ -25,7 +25,7 @@ const server = app.listen(PORT, () => console.log('Server is running on port ', 
 const io = require('socket.io')(server,{
   pingTimeout:60000,
   cors:{
-    origin: 'http://localhost:3000'
+    origin: 'https://chat-app-by-arslan.web.app/'
   }
 })
 
