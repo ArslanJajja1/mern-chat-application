@@ -19,7 +19,6 @@ const MyChats = ({ fetchAgain }) => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      console.log('api......',process.env.REACT_APP_API);
       const { data } = await axios.get(`${process.env.REACT_APP_API}/api/chat`, config);
       setChats(data);
     } catch (error) {

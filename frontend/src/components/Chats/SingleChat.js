@@ -20,7 +20,7 @@ import "./styles.css";
 import ScrollableChat from "./ScrollableChat";
 import animationData from "../../assets/typings.json";
 
-const ENDPOINT = process.env.API;
+const ENDPOINT = process.env.REACT_APP_API;
 var socket, selectedChatCompare;
 const defaultOptions = {
   loop: true,
