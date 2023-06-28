@@ -26,7 +26,7 @@ const GroupChatModal = ({ children }) => {
   const [searchResult, setSearchResult] = useState([]);
   const [loading, setLoading] = useState(false);
   const toast = useToast();
-  const { user, chats, setChats } = ChatState();
+  const { user, chats, setChats,selectedChat } = ChatState();
   const handleSearch = async (query) => {
     setSearch(query);
     if (!query) {
@@ -144,11 +144,13 @@ const GroupChatModal = ({ children }) => {
             </FormControl>
             <Box w="100%" display="flex" flexWrap="wrap">
               {" "}
-              {selectedUsers.map((user) => (
+              {selectedUsers?.map((user1) => (
                 <UserBadgeItem
                   key={user._id}
-                  user={user}
-                  handleFunction={() => handleDelete(user)}
+                  user={user1}
+                  loggedInUser={user}
+                  selectedChat={selectedChat}
+                  handleFunction={handleDelete}
                 />
               ))}
             </Box>
@@ -156,12 +158,11 @@ const GroupChatModal = ({ children }) => {
               <div>Loading...</div>
             ) : (
               searchResult
-                ?.slice(0, 4)
                 .map((user) => (
                   <UserListItem
                     key={user._id}
                     user={user}
-                    handleFunction={() => handleGroup(user)}
+                    handleFunction={handleGroup}
                   />
                 ))
             )}

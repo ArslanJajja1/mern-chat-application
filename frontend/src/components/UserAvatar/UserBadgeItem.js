@@ -2,7 +2,7 @@ import { Box } from "@chakra-ui/react";
 import { CloseIcon } from "@chakra-ui/icons";
 import React from "react";
 
-const UserBadgeItem = ({ user,selectedChat,loggedInUser, handleFunction }) => {
+const UserBadgeItem = ({ user,loggedInUser,selectedChat, handleFunction }) => {
   return (
     <Box
       px={2}
@@ -18,7 +18,7 @@ const UserBadgeItem = ({ user,selectedChat,loggedInUser, handleFunction }) => {
     >
       {user.name}
       {
-        (user._id === loggedInUser._id) && <CloseIcon pl={1} onClick={()=>handleFunction(user)} />
+        (loggedInUser._id === selectedChat.groupAdmin._id) && <CloseIcon pl={1} onClick={()=>handleFunction(user)} />
       }
     </Box>
   );
