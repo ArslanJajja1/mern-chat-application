@@ -24,3 +24,8 @@
 ![Create Group](frontend/public/projectImages/creategroup.png)
 
 
+### Update Group Modal
+
+![Update Group](frontend/public/projectImages/updategroup.png)
+
+
