@@ -29,3 +29,7 @@
 ![Update Group](frontend/public/projectImages/updategroup.png)
 
 
+### User Profile
+
+
+![User Profile Page](frontend/public/projectImages/profile.png)
