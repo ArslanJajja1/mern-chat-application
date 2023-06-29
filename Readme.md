@@ -15,3 +15,7 @@
 
 ![Chat Page](frontend/public/projectImages/chatpage.png)
 
+### Single Chat Page
+
+![Single Chat Page](frontend/public/projectImages/singlechatpage.png)
+
