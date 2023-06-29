@@ -33,3 +33,9 @@
 
 
 ![User Profile Page](frontend/public/projectImages/profile.png)
+
+
+### Notification
+
+
+![User Profile Page](frontend/public/projectImages/notification.png)
