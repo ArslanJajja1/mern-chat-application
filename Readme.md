@@ -19,3 +19,8 @@
 
 ![Single Chat Page](frontend/public/projectImages/singlechatpage.png)
 
+### Create Group Modal
+
+![Create Group](frontend/public/projectImages/creategroup.png)
+
+
