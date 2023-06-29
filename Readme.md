@@ -4,7 +4,10 @@
 
 ### Login
 
-![Login Page][./frontend/public/projectImages/login.png]
+![Login Page][frontend/public/projectImages/login.png]
 
+### Register
+
+![Register Page][frontend/public/projectImages/register.png]
 
 
