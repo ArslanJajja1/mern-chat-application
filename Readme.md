@@ -4,10 +4,14 @@
 
 ### Login
 
-![Login Page][frontend/public/projectImages/login.png]
+![Login Page](frontend/public/projectImages/login.png)
 
 ### Register
 
-![Register Page][frontend/public/projectImages/register.png]
+![Register Page](frontend/public/projectImages/register.png)
 
+
+### Chat Page
+
+![Chat Page](frontend/public/projectImages/chatpage.png)
 
